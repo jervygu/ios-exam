@@ -23,7 +23,7 @@ struct Info: Codable {
 
 // MARK: - Result
 struct User: Codable {
-    let gender: Gender
+    let gender: String
     let name: Name
     let location: Location
     let email: String
@@ -39,11 +39,6 @@ struct User: Codable {
 struct Dob: Codable {
     let date: String
     let age: Int
-}
-
-enum Gender: String, Codable {
-    case female = "female"
-    case male = "male"
 }
 
 // MARK: - ID
@@ -113,15 +108,8 @@ struct Login: Codable {
 
 // MARK: - Name
 struct Name: Codable {
-    let title: Title
+    let title: String
     let first, last: String
-}
-
-enum Title: String, Codable {
-    case miss = "Miss"
-    case mr = "Mr"
-    case mrs = "Mrs"
-    case ms = "Ms"
 }
 
 // MARK: - Picture

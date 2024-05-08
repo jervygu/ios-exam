@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
         return tableView
@@ -18,6 +20,9 @@ class HomeViewController: UIViewController {
     
     private var users = [User]()
     private var viewModels = [UserTableViewCellViewModel]()
+    
+    private var userViewModel = UserViewModel()
+    private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +30,17 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Random Users"
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         tableView.separatorStyle = .none
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
         
         view.addSubview(tableView)
-        fetchUsers()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.bounds
+//        fetchUsers()
+        userViewModel.fetchUsers()
+        tableViewBindings()
     }
     
     private func fetchUsers() {
@@ -63,6 +66,24 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func tableViewBindings() {
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        userViewModel.users.bind(to: tableView.rx.items(cellIdentifier: UserTableViewCell.identifier, cellType: UserTableViewCell.self)) { (row, item, cell) in
+            
+            cell.configure(withViewModel: UserTableViewCellViewModel(
+                imageURL: URL(string: item.picture.large),
+                name: item.name.first,
+                country: "\(item.name.first) \(item.name.last)",
+                email: item.email,
+                phone: item.phone))
+            
+        }.disposed(by: disposeBag)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        tableView.frame = view.bounds
     }
 }
 

@@ -20,6 +20,7 @@
 		07401B172BEB1E300080E807 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B162BEB1E300080E807 /* UserTableViewCell.swift */; };
 		07401B192BEB264D0080E807 /* UserTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B182BEB264D0080E807 /* UserTableViewCellViewModel.swift */; };
 		07CF702E2BEB3F9E0096C754 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF702D2BEB3F9E0096C754 /* UserDetailsViewController.swift */; };
+		07CF70322BEB59E50096C754 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF70312BEB59E50096C754 /* Constants.swift */; };
 		B2AB0385E9DCE75EDF757434 /* Pods_Cybilltek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240CD047431ED6BFEA4A7327 /* Pods_Cybilltek.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		07401B162BEB1E300080E807 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		07401B182BEB264D0080E807 /* UserTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		07CF702D2BEB3F9E0096C754 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		07CF70312BEB59E50096C754 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		240CD047431ED6BFEA4A7327 /* Pods_Cybilltek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cybilltek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D75A870DDAEF622190F7836 /* Pods-Cybilltek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cybilltek.release.xcconfig"; path = "Target Support Files/Pods-Cybilltek/Pods-Cybilltek.release.xcconfig"; sourceTree = "<group>"; };
 		9317F21E48E8126F64D40072 /* Pods-Cybilltek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cybilltek.debug.xcconfig"; path = "Target Support Files/Pods-Cybilltek/Pods-Cybilltek.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				07401AF42BEB01430080E807 /* SceneDelegate.swift */,
 				07401AFE2BEB01450080E807 /* Assets.xcassets */,
 				07401B142BEB1D470080E807 /* Extensions.swift */,
+				07CF70312BEB59E50096C754 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CF702E2BEB3F9E0096C754 /* UserDetailsViewController.swift in Sources */,
+				07CF70322BEB59E50096C754 /* Constants.swift in Sources */,
 				07401B192BEB264D0080E807 /* UserTableViewCellViewModel.swift in Sources */,
 				07401AF72BEB01430080E807 /* HomeViewController.swift in Sources */,
 				07401B132BEB184B0080E807 /* APICaller.swift in Sources */,

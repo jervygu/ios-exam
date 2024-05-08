@@ -10,9 +10,9 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
-    struct Constants {
-        static let myURL = URL(string: "https://randomuser.me/api/?page=1&results=10&seed=abc")
-    }
+//    struct Constants {
+//        static let randomUserURL = URL(string: "https://randomuser.me/api/?page=1&results=10&seed=abc")
+//    }
     
     enum APIError: Error {
         case failedToGetData
@@ -21,7 +21,7 @@ final class APICaller {
     private init() {}
     
     public func getUsers(completion: @escaping(Result<[User], Error>) -> Void) {
-        guard let url = Constants.myURL else {
+        guard let url = Constants.StaticLink.randomUserURL.url else {
             return
         }
         
