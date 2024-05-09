@@ -33,6 +33,10 @@ struct User: Codable {
     let id: ID
     let picture: Picture
     let nat: String
+    
+    func getFullName() -> String {
+        return "\(self.name.first) \(self.name.last)"
+    }
 }
 
 // MARK: - Dob
