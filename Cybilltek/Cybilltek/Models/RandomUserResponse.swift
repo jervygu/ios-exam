@@ -23,6 +23,7 @@ struct Info: Codable {
 
 // MARK: - Result
 struct User: Codable {
+    let id: ID
     let gender: String
     let name: Name
     let location: Location
@@ -37,6 +38,11 @@ struct User: Codable {
 struct Dob: Codable {
     let date: String
     let age: Int
+    
+    var formattedDate: String {
+        let newDate = Constants.formatDate(date: date, baseFormat: Constants.DateFormat.defaultDateFormat, outputFormat: Constants.DateFormat.standardDate)
+        return newDate
+    }
 }
 
 // MARK: - ID
@@ -68,8 +74,7 @@ struct Street: Codable {
 
 // MARK: - Name
 struct Name: Codable {
-    let title: String
-    let first, last: String
+    let title, first, last: String
     
     var fullName: String {
         return "\(first) \(last)"

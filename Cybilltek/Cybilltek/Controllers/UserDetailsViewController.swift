@@ -8,17 +8,6 @@
 import UIKit
 import Kingfisher
 
-//    Avatar image
-//    First name
-//    Last name
-//    Birthday
-//    Age (derived from Birthday)
-//    Email address
-//    Mobile number
-//    Address
-//    Contact person
-//    Contact person's phone number
-
 
 class UserDetailsViewController: UIViewController {
     public let tableHeaderView: UIView = {
@@ -64,12 +53,16 @@ class UserDetailsViewController: UIViewController {
     func createDetails(with model: User) {
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "First name", detail: model.name.first))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Last name", detail: model.name.last))
-        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Birthday", detail: model.dob.date))
+        detailsModels.append(UserDetailsTableViewCellViewModel(
+            title: "Birthday",
+            detail: Constants.formatDate(
+                date: model.dob.date,
+                baseFormat: Constants.DateFormat.defaultDateFormat,
+                outputFormat: Constants.DateFormat.standardDate)))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Age", detail: "\(model.dob.age)"))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Email address", detail: model.email))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Mobile number", detail: model.phone))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Address", detail: model.location.fullAddress))
-        
     }
     
     

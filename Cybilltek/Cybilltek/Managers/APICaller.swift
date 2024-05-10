@@ -10,25 +10,19 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
-    struct Constants {
-        static let randomUserUrlString = "https://randomuser.me/api/?results=10&seed=abc" // page=1
-        static let randomUserURL = URL(string: randomUserUrlString)
-    }
-    
-    enum APIError: Error {
-        case failedToGetData
-    }
-    
     private init() {}
+    
     var isPaginating = false
     
     public func getUsers(pagination: Bool = false, page: Int, completion: @escaping(Result<[User], Error>) -> Void) {
-        let urlString = "\(Constants.randomUserUrlString)&page=\(page)"
+        let urlString = "\(Constants.StaticLink.randomUser.rawValue)&page=\(page)"
         
         guard let url = URL(string: urlString) else {
             return
         }
         print("urlString: \(urlString)")
+        print("isPaginating: \(isPaginating)")
+        print("pagination: \(pagination)")
         
         if pagination {
             isPaginating = true
@@ -36,7 +30,7 @@ final class APICaller {
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
-                completion(.failure(APIError.failedToGetData))
+                completion(.failure(Constants.APIError.failedToGetData))
                 return
             }
             
