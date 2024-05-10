@@ -13,7 +13,16 @@ class HomeViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
+        tableView.isHidden = true
         return tableView
+    }()
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .large
+        indicator.startAnimating()
+        indicator.isHidden = false
+        return indicator
     }()
     
     private var users = [User]()
@@ -34,19 +43,24 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         view.addSubview(tableView)
+        view.addSubview(loadingIndicator)
         fetchUsers()
         
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh) , for: .valueChanged)
+        
+        tableView.isHidden = users.isEmpty
+        loadingIndicator.isHidden = !users.isEmpty
     }
     
     override func viewDidLayoutSubviews() {
         tableView.frame = view.bounds
+        loadingIndicator.center = view.center
+        loadingIndicator.frame = view.bounds
+        
     }
     
     private func fetchUsers() {
-        users.removeAll()
-        
         if tableView.refreshControl?.isRefreshing == true{
             print("refreshing history...page: ", self.page)
         } else {
@@ -56,19 +70,24 @@ class HomeViewController: UIViewController {
         APICaller.shared.getUsers(pagination: false, page: page) { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
-            case .success(let model):
-                strongSelf.users = model
-                strongSelf.viewModels = model.compactMap({
-                    UserTableViewCellViewModel(
-                        imageURL: URL(string: $0.picture.large),
-                        name: $0.name.titleFullName.capitalized,
-                        country: $0.location.country,
-                        email: $0.email,
-                        phone: $0.phone)
-                })
+            case .success(let data):
+                strongSelf.clearFetchedUsers()
+                
+                strongSelf.users = data
+                _ = data.map { user in
+                    strongSelf.viewModels.append(
+                        UserTableViewCellViewModel(imageURL: URL(string: user.picture.large),
+                                                   name: user.name.titleFullName.capitalized,
+                                                   country: user.location.country,
+                                                   email: user.email,
+                                                   phone: user.phone))
+                }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     strongSelf.tableView.refreshControl?.endRefreshing()
+                    strongSelf.loadingIndicator.stopAnimating()
+                    strongSelf.loadingIndicator.isHidden = !strongSelf.users.isEmpty
+                    strongSelf.tableView.isHidden = strongSelf.users.isEmpty
                     strongSelf.tableView.reloadData()
                 }
             case .failure(let error):
@@ -84,6 +103,11 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func clearFetchedUsers() {
+        users.removeAll()
+        viewModels.removeAll()
+    }
+    
     private func createSpinnerFooterView() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.width, height: 44))
         let spinner = UIActivityIndicatorView()
@@ -95,6 +119,9 @@ class HomeViewController: UIViewController {
     
     @objc private func didPullToRefresh() {
         print("refreshing")
+        
+        print("Users count \(users.count)")
+        print("viewModels count \(viewModels.count)")
         page = 1
         fetchUsers()
     }
@@ -159,10 +186,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                                                        country: user.location.country,
                                                        email: user.email,
                                                        phone: user.phone))
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        strongSelf.tableView.reloadData()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            strongSelf.tableView.reloadData()
+                        }
                     }
                 case .failure(_):
                     break
@@ -171,7 +198,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         print("PAGE: \(page)")
-        print("USERS: \(users.count)")
+        
+        print("Users count \(users.count)")
+        print("viewModels count \(viewModels.count)")
     }
     
 }
