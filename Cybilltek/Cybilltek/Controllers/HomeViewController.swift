@@ -131,7 +131,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (tableView.height - scrollView.height + 100) {
+        if position > (tableView.contentSize.height - scrollView.height + 100) {
             print("Loading more")
             
             guard !APICaller.shared.isPaginating else {
