@@ -61,7 +61,7 @@ class HomeViewController: UIViewController {
                 strongSelf.viewModels = model.compactMap({
                     UserTableViewCellViewModel(
                         imageURL: URL(string: $0.picture.large),
-                        name: "\($0.name.first) \($0.name.last)",
+                        name: $0.name.titleFullName.capitalized,
                         country: $0.location.country,
                         email: $0.email,
                         phone: $0.phone)
@@ -124,7 +124,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vc = UserDetailsViewController()
         vc.configure(with: user)
-        vc.title = user.getFullName().capitalized
+        vc.title = user.name.fullName.capitalized
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -155,7 +155,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     _ = data.map { user in
                         strongSelf.viewModels.append(
                             UserTableViewCellViewModel(imageURL: URL(string: user.picture.large),
-                                                       name: user.getFullName(),
+                                                       name: user.name.titleFullName.capitalized,
                                                        country: user.location.country,
                                                        email: user.email,
                                                        phone: user.phone))

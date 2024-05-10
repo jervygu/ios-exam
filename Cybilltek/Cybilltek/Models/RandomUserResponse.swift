@@ -33,10 +33,6 @@ struct User: Codable {
     let id: ID
     let picture: Picture
     let nat: String
-    
-    func getFullName() -> String {
-        return "\(self.name.first) \(self.name.last)"
-    }
 }
 
 // MARK: - Dob
@@ -58,6 +54,15 @@ struct Location: Codable {
     let postcode: Postcode
     let coordinates: Coordinates
     let timezone: Timezone
+    
+    
+    func getFullAddress() -> String {
+        return "\(self.street.number) \(self.street.name), \(self.city) \(self.state), \(self.country)"
+    }
+    
+    var fullAddress: String {
+        return "\(street.number) \(street.name), \(city) \(state), \(country)"
+    }
 }
 
 // MARK: - Coordinates
@@ -114,6 +119,17 @@ struct Login: Codable {
 struct Name: Codable {
     let title: String
     let first, last: String
+    
+    var fullName: String {
+        return "\(first) \(last)"
+    }
+    
+    var titleFullName: String {
+        if title.lowercased() == "mr" || title.lowercased() == "mrs" || title.lowercased() == "ms" {
+            return "\(title). \(first) \(last)"
+        }
+        return "\(title) \(first) \(last)"
+    }
 }
 
 // MARK: - Picture

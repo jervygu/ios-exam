@@ -68,7 +68,7 @@ class UserDetailsViewController: UIViewController {
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Age", detail: "\(model.dob.age)"))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Email address", detail: model.email))
         detailsModels.append(UserDetailsTableViewCellViewModel(title: "Mobile number", detail: model.cell))
-        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Address", detail: model.location.country))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Address", detail: model.location.fullAddress))
         
     }
     
