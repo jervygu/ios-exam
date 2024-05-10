@@ -49,9 +49,6 @@ struct ID: Codable {
 struct Location: Codable {
     let street: Street
     let city, state, country: String
-    let postcode: Postcode
-    let coordinates: Coordinates
-    let timezone: Timezone
     
     
     func getFullAddress() -> String {
@@ -63,48 +60,10 @@ struct Location: Codable {
     }
 }
 
-// MARK: - Coordinates
-struct Coordinates: Codable {
-    let latitude, longitude: String
-}
-
-enum Postcode: Codable {
-    case integer(Int)
-    case string(String)
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode(Int.self) {
-            self = .integer(x)
-            return
-        }
-        if let x = try? container.decode(String.self) {
-            self = .string(x)
-            return
-        }
-        throw DecodingError.typeMismatch(Postcode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Postcode"))
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .integer(let x):
-            try container.encode(x)
-        case .string(let x):
-            try container.encode(x)
-        }
-    }
-}
-
 // MARK: - Street
 struct Street: Codable {
     let number: Int
     let name: String
-}
-
-// MARK: - Timezone
-struct Timezone: Codable {
-    let offset, description: String
 }
 
 // MARK: - Name
