@@ -27,10 +27,8 @@ struct User: Codable {
     let name: Name
     let location: Location
     let email: String
-    let login: Login
-    let dob, registered: Dob
-    let phone, cell: String
-    let id: ID
+    let dob: Dob
+    let phone: String
     let picture: Picture
     let nat: String
 }
@@ -109,12 +107,6 @@ struct Timezone: Codable {
     let offset, description: String
 }
 
-// MARK: - Login
-struct Login: Codable {
-    let uuid, username, password, salt: String
-    let md5, sha1, sha256: String
-}
-
 // MARK: - Name
 struct Name: Codable {
     let title: String
@@ -134,5 +126,5 @@ struct Name: Codable {
 
 // MARK: - Picture
 struct Picture: Codable {
-    let large, medium, thumbnail: String
+    let large: String
 }
