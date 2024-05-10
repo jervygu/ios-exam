@@ -6,24 +6,104 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class UserDetailsViewController: UIViewController {
+    public let tableHeaderView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private let userImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UserDetailsTableViewCell.self, forCellReuseIdentifier: UserDetailsTableViewCell.identifier)
+        tableView.allowsSelection = false
+        return tableView
+    }()
+    
+    var detailsModels = [UserDetailsTableViewCellViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
-    */
+    
+    func configure(with user: User) {
+        createTableHeaderView(with: user.picture.large)
+        createDetails(with: user)
+    }
+    
+    func createDetails(with model: User) {
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "First name", detail: model.name.first))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Last name", detail: model.name.last))
+        detailsModels.append(UserDetailsTableViewCellViewModel(
+            title: "Birthday",
+            detail: Constants.formatDate(
+                date: model.dob.date,
+                baseFormat: Constants.DateFormat.defaultDateFormat,
+                outputFormat: Constants.DateFormat.standardDate)))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Age", detail: "\(model.dob.age)"))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Email address", detail: model.email))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Mobile number", detail: model.phone))
+        detailsModels.append(UserDetailsTableViewCellViewModel(title: "Address", detail: model.location.fullAddress))
+    }
+    
+    
+    private func createTableHeaderView(with urlString: String) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        let headerViewHeight: CGFloat = 250
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: headerViewHeight))
+        
+        let imageSize: CGFloat = headerView.height - 50
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+        
+        headerView.addSubview(imageView)
+        imageView.center = headerView.center
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageSize / 2
+        
+        imageView.kf.setImage(with: url)
+        tableView.tableHeaderView = headerView
+    }
 
+}
+
+extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailsModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserDetailsTableViewCell.identifier, for: indexPath) as? UserDetailsTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let model = detailsModels[indexPath.row]
+        cell.configure(title: model.title, value: model.detail)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="User_Entity" representedClassName="User_Entity" syncable="YES">
+        <attribute name="user_age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="user_dob" optional="YES" attributeType="String"/>
+        <attribute name="user_email" optional="YES" attributeType="String"/>
+        <attribute name="user_first_name" optional="YES" attributeType="String"/>
+        <attribute name="user_gender" optional="YES" attributeType="String"/>
+        <attribute name="user_last_name" optional="YES" attributeType="String"/>
+        <attribute name="user_location" optional="YES" attributeType="String"/>
+        <attribute name="user_phone" optional="YES" attributeType="String"/>
+        <attribute name="user_picture" optional="YES" attributeType="String"/>
+        <attribute name="user_title" optional="YES" attributeType="String"/>
+    </entity>
 </model>

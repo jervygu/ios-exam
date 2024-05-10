@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071DE3E92BEC798B0090ED9C /* UserDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE3E82BEC798B0090ED9C /* UserDetailsTableViewCellViewModel.swift */; };
 		07401AF32BEB01430080E807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401AF22BEB01430080E807 /* AppDelegate.swift */; };
 		07401AF52BEB01430080E807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401AF42BEB01430080E807 /* SceneDelegate.swift */; };
 		07401AF72BEB01430080E807 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401AF62BEB01430080E807 /* HomeViewController.swift */; };
@@ -18,12 +19,16 @@
 		07401B132BEB184B0080E807 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B122BEB184B0080E807 /* APICaller.swift */; };
 		07401B152BEB1D470080E807 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B142BEB1D470080E807 /* Extensions.swift */; };
 		07401B172BEB1E300080E807 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B162BEB1E300080E807 /* UserTableViewCell.swift */; };
-		07401B192BEB264D0080E807 /* UserTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07401B182BEB264D0080E807 /* UserTableViewCellViewModel.swift */; };
 		07CF702E2BEB3F9E0096C754 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF702D2BEB3F9E0096C754 /* UserDetailsViewController.swift */; };
+		07CF70342BEB75EA0096C754 /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF70332BEB75EA0096C754 /* UserDetailsTableViewCell.swift */; };
+		07F777132BEDD82A00A2346A /* User_Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F777112BEDD82A00A2346A /* User_Entity+CoreDataClass.swift */; };
+		07F777142BEDD82A00A2346A /* User_Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F777122BEDD82A00A2346A /* User_Entity+CoreDataProperties.swift */; };
+		07F777422BEE25CC00A2346A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F777412BEE25CC00A2346A /* Constants.swift */; };
 		B2AB0385E9DCE75EDF757434 /* Pods_Cybilltek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240CD047431ED6BFEA4A7327 /* Pods_Cybilltek.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		071DE3E82BEC798B0090ED9C /* UserDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		07401AEF2BEB01430080E807 /* Cybilltek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cybilltek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07401AF22BEB01430080E807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07401AF42BEB01430080E807 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +42,11 @@
 		07401B122BEB184B0080E807 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		07401B142BEB1D470080E807 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07401B162BEB1E300080E807 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		07401B182BEB264D0080E807 /* UserTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		07CF702D2BEB3F9E0096C754 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		07CF70332BEB75EA0096C754 /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		07F777112BEDD82A00A2346A /* User_Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User_Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		07F777122BEDD82A00A2346A /* User_Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User_Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		07F777412BEE25CC00A2346A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		240CD047431ED6BFEA4A7327 /* Pods_Cybilltek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cybilltek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D75A870DDAEF622190F7836 /* Pods-Cybilltek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cybilltek.release.xcconfig"; path = "Target Support Files/Pods-Cybilltek/Pods-Cybilltek.release.xcconfig"; sourceTree = "<group>"; };
 		9317F21E48E8126F64D40072 /* Pods-Cybilltek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cybilltek.debug.xcconfig"; path = "Target Support Files/Pods-Cybilltek/Pods-Cybilltek.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +85,7 @@
 		07401AF12BEB01430080E807 /* Cybilltek */ = {
 			isa = PBXGroup;
 			children = (
+				07F777102BEDD69200A2346A /* Entities */,
 				07401B092BEB08C50080E807 /* Resources */,
 				07401B0E2BEB10800080E807 /* Managers */,
 				07401B0F2BEB17840080E807 /* Models */,
@@ -97,6 +106,7 @@
 				07401AF42BEB01430080E807 /* SceneDelegate.swift */,
 				07401AFE2BEB01450080E807 /* Assets.xcassets */,
 				07401B142BEB1D470080E807 /* Extensions.swift */,
+				07F777412BEE25CC00A2346A /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -123,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				07401B162BEB1E300080E807 /* UserTableViewCell.swift */,
+				07CF70332BEB75EA0096C754 /* UserDetailsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,7 +141,7 @@
 		07401B0D2BEB10730080E807 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				07401B182BEB264D0080E807 /* UserTableViewCellViewModel.swift */,
+				071DE3E82BEC798B0090ED9C /* UserDetailsTableViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -149,6 +160,15 @@
 				07401B102BEB17B80080E807 /* RandomUserResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		07F777102BEDD69200A2346A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				07F777112BEDD82A00A2346A /* User_Entity+CoreDataClass.swift */,
+				07F777122BEDD82A00A2346A /* User_Entity+CoreDataProperties.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		C11C2C1E890A553DCDA4847A /* Pods */ = {
@@ -284,14 +304,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CF702E2BEB3F9E0096C754 /* UserDetailsViewController.swift in Sources */,
-				07401B192BEB264D0080E807 /* UserTableViewCellViewModel.swift in Sources */,
 				07401AF72BEB01430080E807 /* HomeViewController.swift in Sources */,
+				07F777132BEDD82A00A2346A /* User_Entity+CoreDataClass.swift in Sources */,
 				07401B132BEB184B0080E807 /* APICaller.swift in Sources */,
+				07F777142BEDD82A00A2346A /* User_Entity+CoreDataProperties.swift in Sources */,
 				07401AFD2BEB01430080E807 /* Cybilltek.xcdatamodeld in Sources */,
 				07401AF32BEB01430080E807 /* AppDelegate.swift in Sources */,
+				071DE3E92BEC798B0090ED9C /* UserDetailsTableViewCellViewModel.swift in Sources */,
 				07401B172BEB1E300080E807 /* UserTableViewCell.swift in Sources */,
 				07401B112BEB17B90080E807 /* RandomUserResponse.swift in Sources */,
 				07401AF52BEB01430080E807 /* SceneDelegate.swift in Sources */,
+				07F777422BEE25CC00A2346A /* Constants.swift in Sources */,
+				07CF70342BEB75EA0096C754 /* UserDetailsTableViewCell.swift in Sources */,
 				07401B152BEB1D470080E807 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

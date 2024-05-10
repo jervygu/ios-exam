@@ -98,12 +98,6 @@ class UserTableViewCell: UITableViewCell {
             width: (contentView.width - userImageContainerWidth) - 30,
             height: contentView.height - 10)
         
-//        userInformationContainer.backgroundColor = .systemGreen
-//        nameLabel.backgroundColor = .systemBlue
-//        emailLabel.backgroundColor = .systemRed
-//        countryLabel.backgroundColor = .systemBlue
-//        phoneLabel.backgroundColor = .systemRed
-        
         nameLabel.frame = CGRect(
             x: 0,
             y: 0,
@@ -136,27 +130,15 @@ class UserTableViewCell: UITableViewCell {
         phoneLabel.text = nil
     }
     
-    func configure(withViewModel model: UserTableViewCellViewModel) {
-        userImageView.kf.setImage(with: model.imageURL)
-        nameLabel.text = model.name
-        countryLabel.text = model.country
-        emailLabel.text = model.email
-        phoneLabel.text = model.phone
+    func configure(with userModel: User) {
+        userImageView.kf.setImage(with: URL(string: userModel.picture.large))
+        nameLabel.text = userModel.name.titleFullName
+        countryLabel.text = userModel.location.country
+        emailLabel.text = userModel.email
+        phoneLabel.text = userModel.phone
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
